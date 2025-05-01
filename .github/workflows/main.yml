@@ -16,5 +16,5 @@ jobs:
       - name: Push to hub
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
-        run: git pull origin https://pararthdave:$HF_TOKEN@huggingface.co/spaces/pararthdave/HF-Agents-Course main
+        run: git pull
              git push https://pararthdave:$HF_TOKEN@huggingface.co/spaces/pararthdave/HF-Agents-Course main
