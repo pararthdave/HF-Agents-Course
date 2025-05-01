@@ -17,4 +17,4 @@ jobs:
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: git pull
-             git push https://pararthdave:$HF_TOKEN@huggingface.co/spaces/pararthdave/HF-Agents-Course main
+             git push https://pararthdave:$HF_TOKEN@huggingface.co/spaces/pararthdave/HF-Agents-Course
