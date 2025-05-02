@@ -2,6 +2,7 @@ import os
 import gradio as gr
 import requests
 import inspect
+from agent import BotMan
 import pandas as pd
 from dotenv import load_dotenv
 load_dotenv()
@@ -15,11 +16,16 @@ class BasicAgent:
     def __init__(self):
         print("BasicAgent initialized.")
     def __call__(self, question: str) -> str:
-        print(f"Agent received question (first 50 chars): {question[:50]}...")
-        fixed_answer = "This is a default answer."
-        print(f"Agent returning fixed answer: {fixed_answer}")
-        return fixed_answer
-
+        model_id = "mistralai/Mistral-7B-Instruct-v0.2"
+        botman= BotMan(model_type="HfApiModel", model_id=model_id, api_key=os.environ.get("HUGGINGFACEHUB_API_TOKEN"))
+        try:
+            print(f"Running BotMan with question: {question}")
+            answer = botman.answer(question)
+            print(f"BotMan answer: {answer}")
+            return answer
+        except Exception as e:
+            print(f"Error during BotMan execution: {e}")
+            return str(e)
 def run_and_submit_all( profile: gr.OAuthProfile | None):
     """
     Fetches all questions, runs the BasicAgent on them, submits all answers,
